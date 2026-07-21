@@ -1,0 +1,24 @@
+resources:
+
+  catalogs:
+    application_catalog:
+      name: catalog_{bundle.target}
+      comment: "This catalog contains schemas common to application"
+    
+  schemas:
+
+    bronze:
+      name: bronze
+      catalog_name: ${resources.catalogs.application_catalog.name}
+      comment: "Raw data — bronze layer"
+
+    silver:
+      name: silver
+      catalog_name: ${resources.catalogs.application_catalog.name}
+      comment: "Processed data — silver layer"
+
+    gold:
+      name: gold
+      catalog_name: ${resources.catalogs.application_catalog.name}
+      comment: "Refined data — gold layer"
+

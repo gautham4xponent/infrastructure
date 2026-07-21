@@ -1,0 +1,56 @@
+bundle:
+  name: infrastructure
+  uuid: 47331886-2e11-4a25-9c52-6fbd5ddc6175
+
+# permissions:
+#   - service_principal_name: platform-deployer-sp
+#     level: CAN_MANAGE
+#   - group_name: platform-engineers-group
+#     level: CAN_VIEW
+
+includes:
+  resources/*.yml
+
+variables:
+  developer_schema:
+    description: "The schema where developer can experiment"
+
+targets:
+
+  dev:
+    default: true
+    mode: development
+
+    workspace: 
+      host: https://adb-7405604635590717.17.azuredatabricks.net/
+      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
+    
+    variables:
+      developer_schema: "${workspace.current_user.short_name}_schema"
+    
+    resources:
+      schemas:
+        developer_sandbox_schema:
+          name: ${var.developer_schema}
+          catalog_name: catalog_dev
+          comment: "Isolated sandbox schema for experimental work"
+    
+    permissions:
+      - group_name: Data Engineers
+        level: CAN_VIEW
+  
+  qa:
+    workspace: 
+      host: https://adb-7405604635590717.17.azuredatabricks.net/
+      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - group_name: Data Engineers
+        level: CAN_VIEW
+  
+  prod:
+    workspace: 
+      host: https://adb-7405604635590717.17.azuredatabricks.net/
+      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - group_name: Data Engineers
+        level: CAN_VIEW
