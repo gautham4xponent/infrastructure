@@ -10,47 +10,8 @@ bundle:
 
 include:
   - resources/*.yml
+  - targets/*.yml
 
 variables:
   developer_schema:
     description: "The schema where developer can experiment"
-
-targets:
-
-  dev:
-    default: true
-    mode: development
-
-    workspace: 
-      host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: ~/.bundle/${bundle.name}/${bundle.target}
-    
-    variables:
-      developer_schema: "${workspace.current_user.short_name}_schema"
-    
-    resources:
-      schemas:
-        developer_sandbox_schema:
-          name: ${var.developer_schema}
-          catalog_name: catalog_dev
-          comment: "Isolated sandbox schema for experimental work"
-    
-    permissions:
-      - group_name: Data Engineers
-        level: CAN_VIEW
-  
-  qa:
-    workspace: 
-      host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
-    permissions:
-      - group_name: Data Engineers
-        level: CAN_VIEW
-  
-  prod:
-    workspace: 
-      host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
-    permissions:
-      - group_name: Data Engineers
-        level: CAN_VIEW

@@ -1,0 +1,26 @@
+targets:
+
+  dev:
+    default: true
+
+    workspace: 
+      host: https://adb-7405604635590717.17.azuredatabricks.net/
+      root_path: /Workspace/shared/.bundle/${bundle.name}/${bundle.target}
+    
+    variables:
+      developer_schema: "${workspace.current_user.short_name}_schema"
+    
+    resources:
+      schemas:
+        developer_sandbox_schema:
+          name: ${var.developer_schema}
+          catalog_name: catalog_dev
+          comment: "Isolated sandbox schema for experimental work"
+          grants:
+            - principal: Data Engineers
+              privileges: [USE_SCHEMA, CREATE_TABLE, CREATE_VIEW, CREATE_VOLUME, CREATE_EXTERNAL_TABLE, CREATE_FUNCTION]
+    
+    permissions:
+      - group_name: Data Engineers
+        level: CAN_VIEW
+  
