@@ -8,8 +8,8 @@ bundle:
 #   - group_name: platform-engineers-group
 #     level: CAN_VIEW
 
-includes:
-  resources/*.yml
+include:
+  - resources/*.yml
 
 variables:
   developer_schema:
@@ -23,7 +23,7 @@ targets:
 
     workspace: 
       host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: Workspace/shared/.bundle/${bundle.name}/${bundle.target}
+      root_path: ~/.bundle/${bundle.name}/${bundle.target}
     
     variables:
       developer_schema: "${workspace.current_user.short_name}_schema"
