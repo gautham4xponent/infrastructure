@@ -4,6 +4,11 @@ resources:
     application_catalog:
       name: catalog_{bundle.target}
       comment: "This catalog contains schemas common to application"
+      grants:
+        - principal: ${var.deployer_sp}
+          privileges: [ALL_PRIVILEGES]
+        - principal: Data Engineers
+          privileges: [USE_CATALOG]
     
   schemas:
 
@@ -11,14 +16,29 @@ resources:
       name: bronze
       catalog_name: ${resources.catalogs.application_catalog.name}
       comment: "Raw data — bronze layer"
+      grants:
+        - principal: ${var.deployer_sp}
+          privileges: [ALL_PRIVILEGES]
+        - principal: Data Engineers
+          privileges: [USE_SCHEMA, SELECT]
 
     silver:
       name: silver
       catalog_name: ${resources.catalogs.application_catalog.name}
       comment: "Processed data — silver layer"
+      grants:
+        - principal: ${var.deployer_sp}
+          privileges: [ALL_PRIVILEGES]
+        - principal: Data Engineers
+          privileges: [USE_SCHEMA, SELECT]
 
     gold:
       name: gold
       catalog_name: ${resources.catalogs.application_catalog.name}
       comment: "Refined data — gold layer"
+      grants:
+        - principal: ${var.deployer_sp}
+          privileges: [ALL_PRIVILEGES]
+        - principal: Data Engineers
+          privileges: [USE_SCHEMA, SELECT]
 

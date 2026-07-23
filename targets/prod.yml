@@ -2,9 +2,11 @@ targets:
 
   prod:
 
+    variables:
+      deployer_sp: "prod-application-deployer-sp"
+
     workspace: 
       host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: /Workspace/shared/.bundle/${bundle.name}/${bundle.target}
       
     permissions:
       - group_name: Data Engineers

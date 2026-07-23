@@ -5,10 +5,10 @@ targets:
 
     workspace: 
       host: https://adb-7405604635590717.17.azuredatabricks.net/
-      root_path: /Workspace/shared/.bundle/${bundle.name}/${bundle.target}
     
     variables:
       developer_schema: "${workspace.current_user.short_name}_schema"
+      deployer_sp: "dev-application-deployer-sp"
     
     resources:
       schemas:
