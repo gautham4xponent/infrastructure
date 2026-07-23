@@ -1,0 +1,23 @@
+name: Validation Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]   
+  workflow_dispatch:
+
+jobs:
+    Validate:
+        name: bundle validate
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Install Databricks CLI
+              uses: databricks/setup-cli@main
+
+            - name: Bundle validate
+              run: databricks bundle validate
