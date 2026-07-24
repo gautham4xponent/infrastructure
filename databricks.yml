@@ -17,7 +17,5 @@ workspace:
   root_path: /Workspace/shared/.bundle/${bundle.name}/${bundle.target}
 
 variables:
-  developer_schema:
-    description: "The schema where developer can experiment"
   deployer_sp:
     description: "The service principal used to deploy the bundle in the target"

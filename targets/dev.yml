@@ -7,13 +7,12 @@ targets:
       host: https://adb-7405604635590717.17.azuredatabricks.net/
     
     variables:
-      developer_schema: "${workspace.current_user.short_name}_schema"
       deployer_sp: "dev-application-deployer-sp"
     
     resources:
       schemas:
         developer_sandbox_schema:
-          name: ${var.developer_schema}
+          name: gautham_schema
           catalog_name: catalog_dev
           comment: "Isolated sandbox schema for experimental work"
           grants:
