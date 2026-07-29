@@ -6,7 +6,7 @@ targets:
       deployer_sp: "prod-application-deployer-sp"
 
     workspace: 
-      host: https://adb-7405604635590717.17.azuredatabricks.net/
+      host: https://adb-7405617227505068.8.azuredatabricks.net/
       
     permissions:
       - group_name: Data Engineers
